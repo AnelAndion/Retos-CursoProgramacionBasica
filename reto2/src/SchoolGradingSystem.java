@@ -23,7 +23,7 @@ public class SchoolGradingSystem {
         }
     }
 
-    // method 2 type question 1
+    // method 2 type - answer question 1
     public double question1(){
         DecimalFormat f = new DecimalFormat("0.00");
         double summation = 0.0, main;
@@ -34,6 +34,17 @@ public class SchoolGradingSystem {
         // main
         main = summation/n;
         return Double.parseDouble(f.format(main));
+    }
+
+    //method 3 type - answer question 2
+    public int question2(){
+        int noteI = 0;
+        for (int i = 0; i < n; i++){
+            if (data[i][3] <= 6 && data[i][3] > 3){
+                noteI += 1;
+            }
+        }
+        return noteI;
     }
 
 }

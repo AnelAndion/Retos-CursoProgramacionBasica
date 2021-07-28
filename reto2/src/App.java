@@ -3,7 +3,9 @@ public class App {
         SchoolGradingSystem statistics = new SchoolGradingSystem();
         // read
         statistics.readData();
-        // type 1
+        // output - type answer question 1
         System.out.println(statistics.question1());
+        // output - type answer question 2
+        System.out.println(statistics.question2());
     }
 }
