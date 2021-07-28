@@ -9,5 +9,7 @@ public class App {
         System.out.println(statistics.question2());
         // output - type answer question 3
         System.out.println(statistics.question3());
+        // output - type answer question 4
+        System.out.println(statistics.question4());
     }
 }
