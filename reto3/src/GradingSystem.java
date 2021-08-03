@@ -17,4 +17,15 @@ public class GradingSystem {
       main = summation/n;
       return Double.parseDouble(f.format(main)); // output
    }
+   // method 2 -- stat2
+   public int stat2(){
+      int noteI = 0;
+      for (int i = 0; i < n; i++){
+         if (data[i][3] <= 6 && data[i][3] > 3){
+            noteI += 1;
+         }
+      }
+      // output
+      return noteI;
+   }
 }

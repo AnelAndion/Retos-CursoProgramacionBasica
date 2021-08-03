@@ -4,5 +4,7 @@ public class App {
         statistics.loadData();
         //output 1
         System.out.println(statistics.stat1());
+        //output 2
+        System.out.println(statistics.stat2());
     }
 }
