@@ -35,7 +35,7 @@ public class GradingSystem {
       double[] summationSubjects = new double[3];
       for (int i = 0; i < n; i++){
          //Filter subjects of group women for summation and counter
-         if (data[i][2] == 1.0){
+         if (data[i][1] == 1.0){
             if (data[i][2] == 1.0){ //literature
                summationL += data[i][3]; // summation
                counterL += 1; // counter
