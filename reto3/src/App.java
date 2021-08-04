@@ -6,5 +6,9 @@ public class App {
         System.out.println(statistics.stat1());
         //output 2
         System.out.println(statistics.stat2());
+        //output 3
+        System.out.println(statistics.stat3());
+        //output 4
+        System.out.println(statistics.stat4());
     }
 }
