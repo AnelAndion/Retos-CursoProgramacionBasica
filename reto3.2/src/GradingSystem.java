@@ -29,7 +29,8 @@ public class GradingSystem {
         // output
         return Integer.toString(noteI);
     }
-
+    
+    // method 3 -- stat3
     public String stat3(){
         int counterL = 0, counterB = 0, counterG = 0;
         double summationL = 0.0, summationB = 0.0, summationG = 0.0;
@@ -80,6 +81,31 @@ public class GradingSystem {
         }
   
         return null; // output return null
+    }
+    // method 4 -- stat4
+    public String stat4(){
+
+        double[] notesLiterature = new double[6];
+        double noteTop = 0.0;
+        int j = 0; // id student
+        String[] people = {"armando","nicolas","daniel","maria","marcela","alexander"};
+        String student = null;
+
+        // filter notes of literature
+        for (int i = 0; i < n; i++){
+           if (data[i][2] == 1.0){
+                notesLiterature[j] = data[i][3];
+                j += 1;
+            }
+        }
+        for (int i = 0; i < 6; i++){
+            if (notesLiterature[i] > noteTop){
+                noteTop = notesLiterature[i];
+                student = people[i]; // save student with top main
+            }
+        }
+        // output
+        return student;
     }
 
 }

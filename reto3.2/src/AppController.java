@@ -25,7 +25,7 @@ public class AppController {
     void onCalcular(ActionEvent event) {
         input input = new input();
         input.loadData(Integer.parseInt(N.getText()),Input.getText());
-        Output.setText(input.stat1() + "\n" + input.stat2() + "\n" + input.stat3());
+        Output.setText(input.stat1() + "\n" + input.stat2() + "\n" + input.stat3() + "\n" + input.stat4());
     }
 
     @FXML
