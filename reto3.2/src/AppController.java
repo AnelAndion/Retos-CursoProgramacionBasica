@@ -21,6 +21,7 @@ public class AppController {
     @FXML
     private Button limpiar;
 
+
     @FXML
     void onCalcular(ActionEvent event) {
         input input = new input();
@@ -30,7 +31,9 @@ public class AppController {
 
     @FXML
     void onLimpiar(ActionEvent event) {
-
+        N.setText("");
+        Input.setText("");
+        Output.setText("");
     }
 
 }
