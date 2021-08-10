@@ -23,7 +23,8 @@ public class AppController {
 
     @FXML
     void onCalcular(ActionEvent event) {
-
+        input input = new input();
+        input.loadData(Integer.parseInt(N.getText()),Input.getText());
     }
 
     @FXML
