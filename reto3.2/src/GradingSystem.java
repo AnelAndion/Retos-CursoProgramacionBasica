@@ -6,7 +6,7 @@ public class GradingSystem {
     protected double[][] data;
 
     // method 1 -- stat1
-   public String stat1(){
+    public String stat1(){
         DecimalFormat f = new DecimalFormat("0.00");
         double summation = 0.0, main;
         // summation
