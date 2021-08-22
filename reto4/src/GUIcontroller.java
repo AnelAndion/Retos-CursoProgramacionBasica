@@ -49,6 +49,11 @@ public class GUIcontroller {
     private Button eliminar;
 
     @FXML
+    public void initialize(){
+        ConexionDatabase.Open();
+    }
+
+    @FXML
     void actionCargar(ActionEvent event) {
 
     }
@@ -65,7 +70,7 @@ public class GUIcontroller {
 
     @FXML
     void actionGuardar(ActionEvent event) {
-
+        // hey bro here
     }
 
     @FXML
