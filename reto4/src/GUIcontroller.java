@@ -2,6 +2,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+
+import java.util.jar.Attributes.Name;
+
 import javafx.event.ActionEvent;
 
 public class GUIcontroller {
@@ -48,6 +51,7 @@ public class GUIcontroller {
     @FXML
     private Button eliminar;
 
+    //---------- Inicializar conección
     @FXML
     public void initialize(){
         ConexionDatabase.Open();
@@ -70,7 +74,16 @@ public class GUIcontroller {
 
     @FXML
     void actionGuardar(ActionEvent event) {
-        // hey bro here
+
+        Double nb , mt , nt , gr;
+
+        nb = Double.parseDouble(nombre.getText());
+        mt = Double.parseDouble(materia.getText());
+        nt = Double.parseDouble(nota.getText());
+        gr = Double.parseDouble(genero.getText());
+
+        Guardar.Guardar(nb,mt,nt,gr);
+
     }
 
     @FXML
