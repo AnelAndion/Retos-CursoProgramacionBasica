@@ -3,7 +3,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-import java.util.jar.Attributes.Name;
 
 import javafx.event.ActionEvent;
 
@@ -75,14 +74,15 @@ public class GUIcontroller {
     @FXML
     void actionGuardar(ActionEvent event) {
 
-        Double nb , mt , nt , gr;
+        String nb , mt , nt , gr;
 
-        nb = Double.parseDouble(nombre.getText());
-        mt = Double.parseDouble(materia.getText());
-        nt = Double.parseDouble(nota.getText());
-        gr = Double.parseDouble(genero.getText());
+        nb = nombre.getText();
+        mt = materia.getText();
+        nt = nota.getText();
+        gr = genero.getText();
 
-        Guardar.Guardar(nb,mt,nt,gr);
+        Guardar g = new Guardar();
+        g.G(nb,mt,nt,gr);
 
     }
 
