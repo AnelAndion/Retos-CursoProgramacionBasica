@@ -167,6 +167,9 @@ public class GUIcontroller {
         String sql5 ="DELETE FROM infoEstudiante WHERE Nombre=?";
         PreparedStatement sentencia5 = ConexionDatabase.prepararConsulta(sql5);
 
+        String sql6 ="DELETE FROM infoEstudiante WHERE Materia=?";
+        PreparedStatement sentencia6 = ConexionDatabase.prepararConsulta(sql6);
+
         if(CEnombre.getText().isEmpty() && CEmateria.getText().isEmpty()){
             Alert alerta = new Alert(AlertType.INFORMATION);
             alerta.setContentText("Tine que diligenciar una de las dos opciones"); 
@@ -174,7 +177,25 @@ public class GUIcontroller {
         }else{
             if(CEnombre.getText().isEmpty() || CEmateria.getText().isEmpty()){
                 if(CEnombre.getText().isEmpty()){
-                    // vario
+                    if(g.subject(CEmateria.getText()) != 0.6){
+
+                        textAreaCE.setText("");
+                        textAreaCE.getText();
+
+                        sentencia6.setDouble(1, g.subject(CEmateria.getText()));
+                        int nReg2 = ConexionDatabase.ejecutarConsulta(sentencia6);
+
+                        if(nReg2 > 0){
+                            Alert alerta = new Alert(AlertType.INFORMATION);
+                            alerta.setContentText("Todos los datos que tenga la materia "+CEmateria.getText()+"\nse eliminaron"); 
+                            alerta.show();
+                        }
+                        
+                    }else{
+                        Alert alerta = new Alert(AlertType.INFORMATION);
+                        alerta.setContentText("La Materia: "+CEmateria.getText()+" no existe"); 
+                        alerta.show();  
+                    }
                 }else{
                     if(g.name(CEnombre.getText()) != 0.5){
 
