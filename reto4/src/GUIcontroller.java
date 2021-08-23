@@ -97,6 +97,9 @@ public class GUIcontroller {
         String sql3 ="Select * From infoEstudiante WHERE Nombre=?";
         PreparedStatement sentencia3 = ConexionDatabase.prepararConsulta(sql3);
 
+        String sql4 ="Select * From infoEstudiante WHERE Materia=?";
+        PreparedStatement sentencia4 = ConexionDatabase.prepararConsulta(sql4);
+
 
         Guardar g = new Guardar();
         
@@ -104,30 +107,55 @@ public class GUIcontroller {
             Alert alerta = new Alert(AlertType.INFORMATION);
             alerta.setContentText("Tine que diligenciar una de las dos opciones"); 
             alerta.show();
-        }else if(CEnombre.getText().isEmpty() || CEmateria.getText().isEmpty()){
-            if(CEnombre.getText() != ""){
-                if(g.name(CEnombre.getText()) != 0.5){
-
-                    textAreaCE.setText("");
-                    textAreaCE.getText();
-
-                    sentencia3.setDouble(1, g.name(CEnombre.getText()));
-                    ResultSet re3 = ConexionDatabase.consultaSelect(sentencia3);
-
-                    while(re3.next()){
-                        textAreaCE.appendText("~> " + re3.getDouble("Nombre")+" "+ re3.getDouble("Genero")+" "+re3.getDouble("Materia")+" "+re3.getDouble("Notas")+"\n");   
-                    }
-
-                }else{
-                    Alert alerta = new Alert(AlertType.INFORMATION);
-                    alerta.setContentText("El estudiante: "+CEnombre.getText()+" no existe"); 
-                    alerta.show();
-                }
-            }
         }else{
-            Alert alerta = new Alert(AlertType.INFORMATION);
-            alerta.setContentText("No se puede hacer consultas con los dos campos\n dilicenciados"); 
-            alerta.show();
+            if(CEnombre.getText().isEmpty() || CEmateria.getText().isEmpty()){
+                if(CEnombre.getText().isEmpty()){
+                    if(g.subject(CEmateria.getText()) != 0.6){
+    
+                        textAreaCE.setText("");
+                        textAreaCE.getText();
+    
+                        sentencia4.setDouble(1, g.subject(CEmateria.getText()));
+                        ResultSet re4 = ConexionDatabase.consultaSelect(sentencia4);
+    
+                        while(re4.next()){
+                            textAreaCE.appendText("~> " + re4.getDouble("Nombre")+" "+ re4.getDouble("Genero")+" "+re4.getDouble("Materia")+" "+re4.getDouble("Notas")+"\n");   
+                        }
+    
+    
+                    }else{
+                        Alert alerta = new Alert(AlertType.INFORMATION);
+                        alerta.setContentText("La Materia: "+CEmateria.getText()+" no existe"); 
+                        alerta.show();
+                    }
+                }else{
+                    if(g.name(CEnombre.getText()) != 0.5){
+    
+                        textAreaCE.setText("");
+                        textAreaCE.getText();
+    
+                        sentencia3.setDouble(1, g.name(CEnombre.getText()));
+                        ResultSet re3 = ConexionDatabase.consultaSelect(sentencia3);
+    
+                        while(re3.next()){
+                            textAreaCE.appendText("~> " + re3.getDouble("Nombre")+" "+ re3.getDouble("Genero")+" "+re3.getDouble("Materia")+" "+re3.getDouble("Notas")+"\n");   
+                        }
+    
+                    }else{
+                        Alert alerta = new Alert(AlertType.INFORMATION);
+                        alerta.setContentText("El estudiante: "+CEnombre.getText()+" no existe"); 
+                        alerta.show();
+                    }
+                } 
+            }else{
+                Alert alerta = new Alert(AlertType.INFORMATION);
+                alerta.setContentText("No se pueden hacer dos consultas \na la ves"); 
+                alerta.show();
+                CEnombre.setText("");
+                CEmateria.setText("");
+                CEnombre.getText();
+                CEmateria.getText();
+            }    
         }
 
     }
