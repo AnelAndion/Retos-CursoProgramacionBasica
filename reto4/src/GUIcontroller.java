@@ -114,15 +114,15 @@ public class GUIcontroller {
     
                         textAreaCE.setText("");
                         textAreaCE.getText();
-    
+
+
                         sentencia4.setDouble(1, g.subject(CEmateria.getText()));
                         ResultSet re4 = ConexionDatabase.consultaSelect(sentencia4);
-    
+
                         while(re4.next()){
                             textAreaCE.appendText("~> " + re4.getDouble("Nombre")+" "+ re4.getDouble("Genero")+" "+re4.getDouble("Materia")+" "+re4.getDouble("Notas")+"\n");   
                         }
-    
-    
+
                     }else{
                         Alert alerta = new Alert(AlertType.INFORMATION);
                         alerta.setContentText("La Materia: "+CEmateria.getText()+" no existe"); 
@@ -161,8 +161,50 @@ public class GUIcontroller {
     }
 
     @FXML
-    void actionEliminar(ActionEvent event) {
+    void actionEliminar(ActionEvent event) throws Exception{
+        Guardar g = new Guardar();
 
+        String sql5 ="DELETE FROM infoEstudiante WHERE Nombre=?";
+        PreparedStatement sentencia5 = ConexionDatabase.prepararConsulta(sql5);
+
+        if(CEnombre.getText().isEmpty() && CEmateria.getText().isEmpty()){
+            Alert alerta = new Alert(AlertType.INFORMATION);
+            alerta.setContentText("Tine que diligenciar una de las dos opciones"); 
+            alerta.show();
+        }else{
+            if(CEnombre.getText().isEmpty() || CEmateria.getText().isEmpty()){
+                if(CEnombre.getText().isEmpty()){
+                    // vario
+                }else{
+                    if(g.name(CEnombre.getText()) != 0.5){
+
+                        textAreaCE.setText("");
+                        textAreaCE.getText();
+
+                        sentencia5.setDouble(1, g.name(CEnombre.getText()));
+                        int nReg = ConexionDatabase.ejecutarConsulta(sentencia5);
+
+                        if(nReg > 0){
+                            Alert alerta = new Alert(AlertType.INFORMATION);
+                            alerta.setContentText("Todos los datos del estudiante "+CEnombre.getText()+"\nse eliminaron"); 
+                            alerta.show();
+                        }
+                    }else{
+                        Alert alerta = new Alert(AlertType.INFORMATION);
+                        alerta.setContentText("El estudiante: "+CEnombre.getText()+" no existe"); 
+                        alerta.show();
+                    }
+                }
+            }else{
+                Alert alerta = new Alert(AlertType.INFORMATION);
+                alerta.setContentText("No se pueden hacer dos consultas \na la ves"); 
+                alerta.show();
+                CEnombre.setText("");
+                CEmateria.setText("");
+                CEnombre.getText();
+                CEmateria.getText();
+            }
+        }
     }
 
     @FXML
