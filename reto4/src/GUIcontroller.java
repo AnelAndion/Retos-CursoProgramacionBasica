@@ -45,6 +45,9 @@ public class GUIcontroller {
     private Button procesar;
 
     @FXML
+    private TextField tamano;
+
+    @FXML
     private TextField CEnombre;
 
     @FXML
@@ -56,6 +59,7 @@ public class GUIcontroller {
     @FXML
     private Button eliminar;
 
+
     //---------- Inicializar conección
     @FXML
     public void initialize(){
@@ -63,11 +67,17 @@ public class GUIcontroller {
     }
 
     @FXML
-    void actionCargar(ActionEvent event){
+    void actionCargar(ActionEvent event) throws Exception{
+
+        String sql = "Select count(id) From infoEstudiante";
+        PreparedStatement sentencia = ConexionDatabase.prepararConsulta(sql);
+        ResultSet re = ConexionDatabase.consultaSelect(sentencia);
         
         String sql2 ="Select * From infoEstudiante";
         PreparedStatement sentencia2 = ConexionDatabase.prepararConsulta(sql2);
         ResultSet re2 = ConexionDatabase.consultaSelect(sentencia2);
+
+        tamano.setText(Integer.toString(re.getInt(1)));
 
         try{
             inputDatosCargado.setText("");
@@ -110,15 +120,26 @@ public class GUIcontroller {
             g.G(nb,mt,nt,gr);
         }else{
             Alert alerta = new Alert(AlertType.INFORMATION);
-                alerta.setContentText("Alguno de los datos Estudiante esta equivocado"); 
-                alerta.show();
+            alerta.setContentText("Alguno de los datos Estudiante esta equivocado"); 
+            alerta.show();
         }
 
     }
 
     @FXML
-    void actionProcesar(ActionEvent event) {
-
+    void actionProcesar(ActionEvent event){
+    
+        input entrada = new input();
+        // envio el numero de registros
+        if(inputDatosCargado.getText().isEmpty()){
+            Alert alerta = new Alert(AlertType.INFORMATION);
+            alerta.setContentText("Por favor carge el campo de la isquierda"); 
+            alerta.show();
+        }else{
+            
+            entrada.loadData(Integer.parseInt(tamano.getText()), inputDatosCargado.getText());
+            outputResultado.setText(entrada.stat1() + "\n" + entrada.stat2() + "\n" + entrada.stat3() + "\n" + entrada.stat4());
+        }
     }
 
 }

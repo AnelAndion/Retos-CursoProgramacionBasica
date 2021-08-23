@@ -41,6 +41,8 @@
                               <Button fx:id="cargar" layoutX="47.0" layoutY="30.0" mnemonicParsing="false" onAction="#actionCargar" text="Cargar Informacin" />
                               <Button fx:id="procesar" layoutX="202.0" layoutY="30.0" mnemonicParsing="false" onAction="#actionProcesar" text="Procesar" />
                               <Label layoutX="347.0" layoutY="34.0" text="Resultado Estadistico" />
+                              <TextField fx:id="tamano" layoutX="47.0" layoutY="288.0" prefHeight="24.0" prefWidth="57.0" />
+                              <Label layoutX="115.0" layoutY="292.0" text="Tamaño de la muestra" />
                            </children>
                         </AnchorPane>
                   </content>
