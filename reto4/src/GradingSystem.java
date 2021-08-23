@@ -22,7 +22,7 @@ public class GradingSystem {
     public String stat2(){
        int noteI = 0;
         for (int i = 0; i < n; i++){
-           if(data[i][3] <= 6 && 3 < data[i][3]){
+           if(6 >= data[i][3] && 3 < data[i][3]){
                if (data[i][3] > 3) {
                 noteI+=1;
                }
